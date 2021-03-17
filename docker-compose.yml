@@ -31,4 +31,5 @@ services:
       - askbot-network  
       
 networks:
-  askbot-network:    
+  askbot-network:
+    name: askbot-network
