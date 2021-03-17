@@ -1,0 +1,34 @@
+version: "3"
+
+services:
+  postgres:
+    image: "postgres"
+    container_name: postgres-server    
+    ports: 
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=pwd
+    networks:
+      - askbot-network
+
+  postgres-client:
+    image: dpage/pgadmin4
+    container_name: pgadmin4 
+    ports:
+      - "8080:80"
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=selim@gul.com
+      - PGADMIN_DEFAULT_PASSWORD=pwd
+    networks:
+      - askbot-network
+
+  askbot:
+    image: selimgul/askbot-selimgul
+    container_name: askbot    
+    ports:
+      - "80:80"    
+    networks:
+      - askbot-network  
+      
+networks:
+  askbot-network:    
